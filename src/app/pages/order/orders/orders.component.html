@@ -1,0 +1,45 @@
+
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-6">
+      <h3>Orders</h3>
+    </div>
+    <div class="col-6 text-end">
+      <button class="btn btn-success" (click)="openModal()">Add Order</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Stock ID</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Person Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders| slice : start : end; trackBy: orderTrackBy">
+            <th scope="row">{{order?.stockId}}</th>
+            <td>{{order?.price}}</td>
+            <td>{{order?.quantity}}</td>
+            <td>{{order?.personName}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="col-12 d-flex justify-content-center" *ngIf="orders">
+        <pagination
+          [totalItems]="orders.length"
+          [itemsPerPage]="8"
+          (pageChanged)="pageChanged($event)"
+          previousText="&lsaquo;"
+          nextText="&rsaquo;"
+          firstText="&laquo;"
+          lastText="&raquo;"
+        ></pagination>
+      </div>
+    </div>
+  </div>
+</div>

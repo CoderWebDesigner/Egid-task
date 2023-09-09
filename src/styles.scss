@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@font-face{
+  font-family:'JF Flat';
+  src: url('./assets/font/jf-flat-regular.woff') format("woff"),
+  url('./assets/font/jf-flat-regular.ttf') format('truetype'),
+}
+
+@import './assets/scss/helper/variables';
+body{
+  font-family: $main-font;
+}

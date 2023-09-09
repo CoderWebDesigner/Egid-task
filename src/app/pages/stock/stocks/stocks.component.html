@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row mt-5">
+    <!-- stocks -->
+    <div class="col-lg-3 col-md-6 mb-4" *ngFor="let stock of stocks| slice : start : end; trackBy: priceTrackBy">
+      <div class="stock shadow-sm rounded bg-white">
+        <div class="stock-img text-center">
+          <img
+            src="../../../../assets/images/noImg.png"
+            [alt]="stock?.Name"
+            class="img-fluid"
+          />
+        </div>
+        <div class="stock-info py-3 text-center px-3">
+          <h3>
+            <a
+              class="text-dark fw-bold text-truncate d-inline-block w-100 text-decoration-none"
+              >{{ stock?.Name }}</a
+            >
+          </h3>
+          <p class="text-muted text-center">
+            <span class="fw-bold text-dark"
+              >{{ stock?.Price }} $</span
+            >
+          </p>
+          <button class="bg-white rounded border text-muted px-5 py-2 font-weight-bold" (click)="openModal(stock)">Order Now </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 d-flex justify-content-center" *ngIf="stocks">
+      <pagination
+        [totalItems]="stocks.length"
+        [itemsPerPage]="8"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;"
+      ></pagination>
+    </div>
+    <!-- ./stocks -->
+  </div>
+</div>
+

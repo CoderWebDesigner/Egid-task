@@ -1,0 +1,36 @@
+<form [formGroup]="orderForm" class="p-4" (ngSubmit)="submit()">
+  <div class="row">
+    <ng-container *ngIf="stock;else selectStock">
+      <div class="col-lg-6 mb-3">
+        <label for="">Stock ID</label>
+        <input type="text" class="form-control" formControlName="stockId" [attr.readonly]="true">
+      </div>
+      <div class="col-lg-6 mb-3">
+        <label for="">Price</label>
+        <input type="text" class="form-control" formControlName="price" [attr.readonly]="true">
+      </div>
+    </ng-container>
+    <ng-template #selectStock>
+      <div class="col-lg-6 mb-3">
+        <label for="">Select Stock</label>
+        <select formControlName="stock" class="form-control">
+          <option [ngValue]="stock" *ngFor="let stock of stocks">{{stock?.Name}}</option>
+        </select>
+      </div>
+    </ng-template>
+
+
+    <div class="col-lg-6 mb-3">
+      <label for="">Quantity</label>
+      <input type="number" class="form-control" formControlName="quantity">
+    </div>
+    <div class="col-lg-6 mb-3">
+      <label for="">Person Name</label>
+      <input type="text" class="form-control" formControlName="personName">
+    </div>
+    <div class="col-12 text-end">
+      <button class="btn btn-success mx-4" type="submit" [disabled]="orderForm.invalid">Confirm</button>
+      <button class="btn btn-light" type="button" (click)="_bsModalRef.hide()">Cancel</button>
+    </div>
+  </div>
+</form>
